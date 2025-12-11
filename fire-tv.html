@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ski Webcam Multiview - Fire TV</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for 2x2 grid */
+      grid-gap: 5px; /* small gap for TV screens */
+    }
+
+    .cam {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .label {
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 3px;
+      font-size: 18px;
+    }
+
+    video {
+      width: 100%;
+      height: calc((100vw / 2) * 9 / 16); /* 16:9 aspect ratio for 2 columns */
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cam">
+    <div class="label">Beech Mountain Summit</div>
+    <video controls autoplay muted playsinline
+           src="https://stream.resortcams.com/live/beechsummit.stream/playlist.m3u8"
+           type="application/x-mpegURL"
+           title="Beech Mountain Summit">
+    </video>
+  </div>
+
+  <div class="cam">
+    <div class="label">Beech Mountain Base</div>
+    <video controls autoplay muted playsinline
+           src="https://stream.resortcams.com/live/beechbase.stream/playlist.m3u8"
+           type="application/x-mpegURL"
+           title="Beech Mountain Base">
+    </video>
+  </div>
+
+  <div class="cam">
+    <div class="label">Snowshoe Ballhooter / Boathouse</div>
+    <video controls autoplay muted playsinline
+           src="https://stream.citynet.net/Snowshoe/smil:boathouse.smil/playlist.m3u8"
+           type="application/x-mpegURL"
+           title="Snowshoe Ballhooter / Boathouse">
+    </video>
+  </div>
+
+  <div class="cam">
+    <div class="label">Snowshoe Skidder Slope</div>
+    <video controls autoplay muted playsinline
+           src="https://stream.citynet.net/Snowshoe/smil:village.smil/playlist.m3u8"
+           type="application/x-mpegURL"
+           title="Snowshoe Skidder Slope">
+    </video>
+  </div>
+
+  <!-- Fire TV Silk Sleep Prevention Script -->
+  <script>
+    // Scroll page 1px down and back up every minute to keep Silk awake
+    setInterval(() => {
+      window.scrollBy(0, 1);
+      window.scrollBy(0, -1);
+    }, 60000);
+  </script>
+
+</body>
+</html>
