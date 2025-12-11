@@ -11,6 +11,20 @@
       grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
       grid-gap: 10px;
     }
+
+    .cam {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .label {
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
     video, iframe {
       width: 100%;
       height: 270px;
@@ -23,34 +37,42 @@
   <div class="cam">
     <div class="label">Beech Mountain Summit</div>
     <video controls autoplay muted playsinline
-         src="https://stream.resortcams.com/live/beechsummit.stream/playlist.m3u8"
-         type="application/x-mpegURL">
+           src="https://stream.resortcams.com/live/beechsummit.stream/playlist.m3u8"
+           type="application/x-mpegURL">
     </video>
-  </div>  
+  </div>
 
-  <!-- Beech Mountain Base -->
-  <video controls autoplay muted playsinline
-         src="https://stream.resortcams.com/live/beechbase.stream/playlist.m3u8"
-         type="application/x-mpegURL">
-  </video>
+  <div class="cam">
+    <div class="label">Beech Mountain Base</div>
+    <video controls autoplay muted playsinline
+           src="https://stream.resortcams.com/live/beechbase.stream/playlist.m3u8"
+           type="application/x-mpegURL">
+    </video>
+  </div>
 
-  <!-- Beech Mountain Parkway -->
-  <video controls autoplay muted playsinline
-         src="https://stream.resortcams.com/live/beechparkway.stream/playlist.m3u8"
-         type="application/x-mpegURL">
-  </video>
+  <div class="cam">
+    <div class="label">Beech Mountain Parkway</div>
+    <video controls autoplay muted playsinline
+           src="https://stream.resortcams.com/live/beechparkway.stream/playlist.m3u8"
+           type="application/x-mpegURL">
+    </video>
+  </div>
 
-  <!-- Snowshoe Ballhooter / Boathouse -->
-  <video controls autoplay muted playsinline
-         src="https://stream.citynet.net/Snowshoe/smil:boathouse.smil/playlist.m3u8"
-         type="application/x-mpegURL">
-  </video>
+  <div class="cam">
+    <div class="label">Snowshoe Ballhooter / Boathouse</div>
+    <video controls autoplay muted playsinline
+           src="https://stream.citynet.net/Snowshoe/smil:boathouse.smil/playlist.m3u8"
+           type="application/x-mpegURL">
+    </video>
+  </div>
 
-  <!-- Snowshoe Skidder Slope -->
-  <video controls autoplay muted playsinline
-         src="https://stream.citynet.net/Snowshoe/smil:village.smil/playlist.m3u8"
-         type="application/x-mpegURL">
-  </video>
+  <div class="cam">
+    <div class="label">Snowshoe Skidder Slope</div>
+    <video controls autoplay muted playsinline
+           src="https://stream.citynet.net/Snowshoe/smil:village.smil/playlist.m3u8"
+           type="application/x-mpegURL">
+    </video>
+  </div>
 
 </body>
 </html>
