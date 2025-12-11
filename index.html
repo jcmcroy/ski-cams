@@ -9,7 +9,7 @@
       background: #000;
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* 3 columns across */
-      grid-gap: 5px; /* small gap for TV screens */
+      grid-gap: 5px; /* small gap for TVs */
     }
 
     .cam {
@@ -25,10 +25,9 @@
       font-size: 18px;
     }
 
-    iframe {
+    video {
       width: 100%;
-      height: 270px; /* adjust height for 16:9 if needed */
-      border: none;
+      height: calc((100vw / 3) * 9 / 16); /* maintain 16:9 ratio */
       background: #000;
     }
   </style>
@@ -37,33 +36,59 @@
 
   <div class="cam">
     <div class="label">Beech Mountain Summit</div>
-    <iframe src="https://www.resortcams.com/webcams/beech-mountain-summit/" allowfullscreen></iframe>
+    <video id="beechSummit" controls autoplay muted playsinline></video>
   </div>
 
   <div class="cam">
     <div class="label">Beech Mountain Base</div>
-    <iframe src="https://www.resortcams.com/webcams/beech-base-cam/" allowfullscreen></iframe>
+    <video id="beechBase" controls autoplay muted playsinline></video>
   </div>
 
   <div class="cam">
     <div class="label">Beech Mountain Parkway</div>
-    <iframe src="https://www.resortcams.com/webcams/beech-parkway/" allowfullscreen></iframe>
+    <video id="beechParkway" controls autoplay muted playsinline></video>
   </div>
 
   <div class="cam">
     <div class="label">Snowshoe Ballhooter / Boathouse</div>
-    <iframe src="https://www.snowshoemtn.com/media-room/boathouse-and-ballhooter-lift-live-cam" allowfullscreen></iframe>
+    <video id="ballhooter" controls autoplay muted playsinline></video>
   </div>
 
   <div class="cam">
     <div class="label">Snowshoe Skidder Slope</div>
-    <iframe src="https://www.snowshoemtn.com/media-room/village-and-skidder-slope-live-cam" allowfullscreen></iframe>
+    <video id="skidder" controls autoplay muted playsinline></video>
   </div>
 
-  <div class="cam">
-    <div class="label">Snowshoe Silver Creek</div>
-    <iframe src="https://www.snowshoemtn.com/media-room/silver-creek-live-cam" allowfullscreen></iframe>
-  </div>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const streams = [
+      {id: 'beechSummit', url: 'https://stream.resortcams.com/live/beechsummit.stream/playlist.m3u8'},
+      {id: 'beechBase', url: 'https://stream.resortcams.com/live/beechbase.stream/playlist.m3u8'},
+      {id: 'beechParkway', url: 'https://stream.resortcams.com/live/beechparkway.stream/playlist.m3u8'},
+      {id: 'ballhooter', url: 'https://stream.citynet.net/Snowshoe/smil:boathouse.smil/playlist.m3u8'},
+      {id: 'skidder', url: 'https://stream.citynet.net/Snowshoe/smil:village.smil/playlist.m3u8'}
+    ];
+
+    streams.forEach(stream => {
+      const video = document.getElementById(stream.id);
+      if(Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(stream.url);
+        hls.attachMedia(video);
+      } else if(video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = stream.url;
+      }
+    });
+  </script>
+
+  <!-- Fire TV Silk Sleep Prevention Script -->
+  <script>
+    // Scroll page 1px down and back up every minute to keep Silk awake
+    setInterval(() => {
+      window.scrollBy(0, 1);
+      window.scrollBy(0, -1);
+    }, 60000); // every 60 seconds
+  </script>
 
 </body>
 </html>
